@@ -1,2 +1,2 @@
-#App que fiz pro meu filho cadastrar as informações dos jogos dele.
-#Utilizado Xamarin Forms, Shell, LiteDB e PancakeView.
+App de teste que fiz pro meu filho cadastrar as informações dos jogos dele.
+Foi utilizado Xamarin Forms, Shell, LiteDB e PancakeView.
