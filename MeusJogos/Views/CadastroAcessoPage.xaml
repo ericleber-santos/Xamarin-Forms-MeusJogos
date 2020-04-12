@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MeusJogos.Views.CadastroAcessoPage"
+             xmlns:behaviors="clr-namespace:MeusJogos.Behaviors"
+             xmlns:renderers="clr-namespace:MeusJogos.Renderers"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             >
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" BackgroundColor="Black">
+            <Grid.RowDefinitions>                
+                <RowDefinition Height="*"/>               
+            </Grid.RowDefinitions>           
+
+            <StackLayout x:Name="stackFormulario"     
+                         Grid.Row="0"
+                         Margin="50,0,50,0"
+                         VerticalOptions="Center"
+                         Orientation="Vertical"                                                
+                         >
+
+                <Label x:Name="Titulo" 
+                       Text="Cadastro de Usuário"                   
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End"
+                       FontSize="Title" 
+                       />
+
+                <yummy:PancakeView 
+                    x:Name="pancakeUsuario"
+                            Margin="0,20,0,0"
+                            Padding="10,0,0,0"                           
+                            BackgroundColor="LemonChiffon"
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand">
+                    <renderers:BorderlessEntry
+                        x:Name="entryUsuario"
+                        FontSize="Medium"
+                        Text="{Binding Usuario, Mode=TwoWay}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Placeholder="Usuário" 
+                        PlaceholderColor="LightPink"
+                        TextColor="Black" 
+                        BackgroundColor="LemonChiffon"
+                        />
+                </yummy:PancakeView>
+
+                <yummy:PancakeView
+                            Padding="10,0,0,0"  
+                            BackgroundColor="LemonChiffon"
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand"
+                            >
+                    <renderers:BorderlessEntry
+                        x:Name="entrySenha"
+                        FontSize="Medium"
+                        Text="{Binding Senha, Mode=TwoWay}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Placeholder="Senha" 
+                        PlaceholderColor="LightPink"
+                        TextColor="Black"
+                        IsPassword="True"
+                        BackgroundColor="LemonChiffon"
+                        />
+                </yummy:PancakeView>
+
+                <yummy:PancakeView
+                            Padding="10,0,0,0"  
+                            BackgroundColor="LemonChiffon"
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand"
+                            >
+                    <renderers:BorderlessEntry
+                        x:Name="entryConfirmarSenha"
+                        FontSize="Medium"
+                        Text="{Binding ConfirmarSenha, Mode=TwoWay}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Placeholder="Confirmar Senha" 
+                        PlaceholderColor="LightPink"
+                        TextColor="Black"
+                        IsPassword="True"
+                        BackgroundColor="LemonChiffon"
+                        />
+                </yummy:PancakeView>
+
+                <Button x:Name="btnSalvar"                       
+                        Margin="0,5,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#0053A1"
+                        TextColor="White"
+                        Text="Salvar"
+                        CornerRadius="25"
+                    >
+                    <Button.Behaviors>
+                        <behaviors:ViewTappedButtonBehavior Command="{Binding CadastrarCommand}" AnimationType="Scale"/>
+                    </Button.Behaviors>
+                </Button>
+
+                <ActivityIndicator Margin="0,-50,0,0"        
+                                   Color="White"
+                                   HeightRequest="40"
+                                   WidthRequest="40"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   />
+              
+            </StackLayout>
+          
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

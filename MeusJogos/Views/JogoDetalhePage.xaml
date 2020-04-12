@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MeusJogos.Views.JogoDetalhePage"
+             xmlns:renderers="clr-namespace:MeusJogos.Renderers"             
+             xmlns:converters="clr-namespace:MeusJogos.Helpers.Converters"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             >   
+    <ContentPage.Resources>
+        <ResourceDictionary>            
+            <converters:StringToUpperConverter x:Key="stringToUpperConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>    
+    <ContentPage.Content>
+        <yummy:PancakeView 
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="FillAndExpand"                        
+            BackgroundGradientStartColor="Black" 
+            BackgroundGradientEndColor="DarkRed">
+            <Grid x:Name="MainGrid">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                            <Label x:Name="JogoLabel" Text="JOGO" FontSize="36" TextColor="White" Opacity="0.5"/>
+                            <StackLayout x:Name="FormLayout" Spacing="8" VerticalOptions="CenterAndExpand">
+                                <Grid ColumnSpacing="16">
+                                    <StackLayout Spacing="4" Grid.Column="0">
+                                        <Label Text="NOME" FontSize="12" TextColor="White" Opacity="0.5"/>
+                                        <Entry Text="{Binding JogoNome, Converter={StaticResource Key=stringToUpperConverter}}" Keyboard="Text" MaxLength="100" BackgroundColor="White" Opacity="0.5"/>
+                                    </StackLayout>
+                                    <StackLayout Spacing="4" Grid.Column="1">
+                                        <Label Text="CATEGORIA"  FontSize="12" TextColor="White" Opacity="0.5"/>
+                                        <Picker 
+                                        Margin="0"
+                                        Title="Selecione"
+                                        TitleColor="LightPink"
+                                        x:Name="PickerCategorias"
+                                        ItemsSource="{Binding ListaCategorias}"
+                                        ItemDisplayBinding="{Binding CAT_NOME}"                 
+                                        SelectedItem="{Binding CategoriaSelecionada, Mode=TwoWay}"                
+                                        HorizontalOptions="FillAndExpand"                 
+                                        FontSize="Medium"                        
+                                        FontAttributes="None"
+                                        WidthRequest="250"
+                                            BackgroundColor="White" Opacity="0.5"
+                                    />
+                                    </StackLayout>
+                                </Grid>
+                                <StackLayout Spacing="4">
+                                    <Label Text="LOGIN" FontSize="12" TextColor="White" Opacity="0.5"/>
+                                    <Entry Text="{Binding JogoLogin}" Keyboard="Default" MaxLength="100" BackgroundColor="White" Opacity="0.5"/>
+                                </StackLayout>
+                                <StackLayout Spacing="4">
+                                    <Label Text="E-MAIL CADASTRADO"  FontSize="12" TextColor="White" Opacity="0.5"/>
+                                    <Entry Text="{Binding JogoEmail}" Keyboard="Email" BackgroundColor="White" Opacity="0.5"/>
+                                </StackLayout>
+                                <Grid ColumnSpacing="16">
+                                    <StackLayout Spacing="4" Grid.Column="0">
+                                        <Label Text="PERSONAGEM" FontSize="12" TextColor="White" Opacity="0.5"/>
+                                        <Entry Text="{Binding JogoPersonagem}" Keyboard="Text" MaxLength="100" BackgroundColor="White" Opacity="0.5"/>
+                                    </StackLayout>
+                                    <StackLayout Spacing="4" Grid.Column="1">
+                                        <Label Text="LEVEL"  FontSize="12" TextColor="White" Opacity="0.5"/>
+                                        <Entry Text="{Binding JogoNivel}" Keyboard="Numeric" MaxLength="3" BackgroundColor="White" Opacity="0.5"/>
+                                    </StackLayout>
+                                </Grid>
+                                <StackLayout Spacing="4">
+                                    <Label Text="BUILD"  FontSize="12" TextColor="White" Opacity="0.5"/>
+                                    <Entry Text="{Binding JogoBuild}" Keyboard="Text" MaxLength="100" BackgroundColor="White" Opacity="0.5"/>
+                                </StackLayout>
+                                <StackLayout Spacing="4">
+                                    <Label Text="BUILD URL" FontSize="12" TextColor="White" Opacity="0.5"/>
+                                    <Entry Text="{Binding JogoURLBuild}" Keyboard="Text" MaxLength="200" BackgroundColor="White" Opacity="0.5"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <yummy:PancakeView 
+                            Margin="5,10,5,0" 
+                            HorizontalOptions="FillAndExpand"    
+                            BackgroundGradientAngle="270"               
+                            BackgroundGradientStartColor="Black"                             
+                            BackgroundGradientEndColor="DarkBlue"
+                            CornerRadius="5">
+                        <Button
+                            x:Name="btnSalvar"
+                            Margin="0"
+                            CornerRadius="5"
+                            TextColor="White"                            
+                            BackgroundColor="Transparent" 
+                            Text="Salvar" 
+                            FontSize="Medium"
+                            Command="{Binding SalvarJogoCommand}"/>
+                        </yummy:PancakeView>
+
+                        <yummy:PancakeView 
+                            x:Name="pancakeExcluir" 
+                            Margin="5,5,5,0" 
+                            HorizontalOptions="FillAndExpand"             
+                            BackgroundGradientAngle="270"              
+                            BackgroundGradientStartColor="Black"                             
+                            BackgroundGradientEndColor="Firebrick"
+                            CornerRadius="5">
+                        <Button    
+                            x:Name="btnExcluir" 
+                            Margin="0"
+                            CornerRadius="5"
+                            TextColor="White"                            
+                            BackgroundColor="Transparent" 
+                            Text="Excluir" 
+                            FontSize="Medium"
+                            Command="{Binding ExcluirJogoCommand}"/>
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</ContentPage>

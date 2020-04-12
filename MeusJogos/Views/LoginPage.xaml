@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MeusJogos.Views.LoginPage" 
+             BackgroundColor="White" 
+             Shell.NavBarIsVisible="False" 
+             xmlns:behaviors="clr-namespace:MeusJogos.Behaviors"
+             xmlns:renderers="clr-namespace:MeusJogos.Renderers"  
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentPage.Content>
+
+        <yummy:PancakeView 
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="FillAndExpand"                        
+            BackgroundGradientStartColor="Black" 
+            BackgroundGradientEndColor="DarkRed">       
+            
+            <Grid VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <FlexLayout Grid.Row="0" Direction="Column" AlignItems="Center" JustifyContent="End">
+
+                 <yummy:PancakeView
+                    x:Name="Foto"
+                    Opacity="0"
+                    TranslationY="-50"
+                    WidthRequest="80"
+                    HeightRequest="80" BackgroundColor="White" Padding="5"
+                    CornerRadius="20"
+                    Elevation="5"
+                    HorizontalOptions="CenterAndExpand">
+                    <Image 
+                        WidthRequest="80"
+                        HeightRequest="00"
+                        Source="Enzo2020SemFundo68x200"
+                        HorizontalOptions="CenterAndExpand" />
+                </yummy:PancakeView>
+                
+                
+                <Label x:Name="Titulo"
+                       Opacity="0"
+                       TranslationY="-50"
+                       Text="Meus Jogos!"                   
+                       FontAttributes="Bold"
+                       TextColor="LightGray"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="End"
+                       FontSize="Title"
+                       />               
+            </FlexLayout>
+
+            <StackLayout x:Name="stackLogin"  
+                         Opacity="0" 
+                         TranslationX="50" 
+                         Orientation="Vertical" 
+                         Margin="50,0,50,0" 
+                         Grid.Row="2" 
+                         >
+                <Label  HorizontalOptions="CenterAndExpand"
+                        Margin="0,0,0,10"
+                        Text="Login"
+                        TextColor="Gray"
+                        FontSize="Title" 
+                        />
+
+                <yummy:PancakeView 
+                    x:Name="pancakeUsuario"
+                            Padding="10,0,0,0"                           
+                            BackgroundColor="LemonChiffon"
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand">
+                    <renderers:BorderlessEntry
+                        x:Name="entryUsuario"
+                        FontSize="Medium"
+                        Text="{Binding Usuario, Mode=TwoWay}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Placeholder="Usuário" 
+                        PlaceholderColor="LightPink"
+                        TextColor="Black" 
+                        BackgroundColor="LemonChiffon"
+                        />
+                </yummy:PancakeView>
+
+                <yummy:PancakeView
+                            Padding="10,0,0,0"  
+                            BackgroundColor="LemonChiffon"
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand">
+                    <renderers:BorderlessEntry
+                        x:Name="entrySenha"
+                        FontSize="Medium"
+                        Text="{Binding Senha, Mode=TwoWay}"
+                        IsEnabled="{Binding IsNotBusy}"
+                        Placeholder="Senha" 
+                        PlaceholderColor="LightPink"
+                        TextColor="Black"
+                        IsPassword="True"
+                        BackgroundColor="LemonChiffon"
+                        />
+                </yummy:PancakeView>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" 
+                         Margin="50,0,50,0" 
+                         Grid.Row="3"
+                         >
+                 <yummy:PancakeView 
+                           x:Name="pancakeLogin"
+                            TranslationX="-50"
+                            Opacity="0"
+                            Margin="5,10,5,0" 
+                            HorizontalOptions="FillAndExpand"    
+                            BackgroundGradientAngle="270"               
+                            BackgroundGradientStartColor="Black" 
+                            BackgroundGradientEndColor="DarkBlue"
+                            CornerRadius="5">
+                        <Button 
+                            x:Name="btnLogin"
+                            TranslationX="-50"
+                            Opacity="0"
+                            Margin="0"
+                            CornerRadius="5"
+                            TextColor="White"                            
+                            BackgroundColor="Transparent" 
+                            Text="Entrar" 
+                            FontSize="Medium"
+                            Command="{Binding SalvarJogoCommand}">
+                            <Button.Behaviors>
+                                <behaviors:ViewTappedButtonBehavior Command="{Binding LogarCommand}" AnimationType="Scale"/>
+                            </Button.Behaviors>
+                        </Button>
+                    </yummy:PancakeView>
+
+                    <ActivityIndicator Margin="0,-50,0,0"        
+                                   Color="White"
+                                   HeightRequest="40"
+                                   WidthRequest="40"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   />
+
+                    <yummy:PancakeView 
+                           x:Name="pancakeCadastro"  
+                            TranslationX="-50"
+                            Opacity="0"
+                            Margin="5,5,5,0" 
+                            HorizontalOptions="FillAndExpand"    
+                            BackgroundGradientAngle="270"               
+                            BackgroundGradientStartColor="Black" 
+                            BackgroundGradientEndColor="DarkBlue"
+                            CornerRadius="5"
+                            IsVisible="{Binding PrimeiroAcesso}">
+                        <Button 
+                            x:Name="btnCadastro"
+                            TranslationX="-50"
+                            Opacity="0"
+                            Margin="0"
+                            CornerRadius="5"
+                            TextColor="White"                            
+                            BackgroundColor="Transparent" 
+                            Text="Cadastrar" 
+                            FontSize="Medium"
+                            Command="{Binding SalvarJogoCommand}">
+                            <Button.Behaviors>
+                                <behaviors:ViewTappedButtonBehavior Command="{Binding CadastrarCommand}" AnimationType="Scale"/>
+                            </Button.Behaviors>
+                        </Button>
+                    </yummy:PancakeView>
+                
+                </StackLayout>
+
+            <Label 
+                Grid.Row="5" 
+                x:Name="Icones" 
+                Opacity="0"
+                TranslationY="50"
+                Margin="0,10,5,0"                
+                Text="🔥 🎮 🕹️ 👾 🏹 🧩 🎧"
+                FontAttributes="Bold"
+                TextColor="Black"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="End"
+                FontSize="Medium"
+                />
+        </Grid>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MeusJogos.Views.MeusJogosPage"     
+             xmlns:renderers="clr-namespace:MeusJogos.Renderers"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Title="Meus Jogos"
+             >   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddJogo_Clicked" />
+    </ContentPage.ToolbarItems>
+    <yummy:PancakeView 
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="FillAndExpand"                        
+            BackgroundGradientStartColor="Black" 
+            BackgroundGradientEndColor="DarkRed">
+            <CollectionView            
+            Margin="5"
+            x:Name="collectionJogos"
+                ItemsSource="{Binding ListaJogos}"                        
+                SelectionMode="Single"
+                SelectedItem="{Binding JogoSelecionado}"                
+                SelectionChangedCommand="{Binding ItemSelectionChangedCommand}"   
+                EmptyView="Para adicionar jogo toque em ADD!"
+            >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout 
+                    Orientation="Vertical"
+                    Span="1"
+                />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid 
+                        Padding="20,5,20,5"                   
+                        >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Frame 
+                                HasShadow="True"
+                                BorderColor="LightSteelBlue" 
+                                Padding="5" 
+                                CornerRadius="5" 
+                                BackgroundColor="White"
+                                Opacity="0.7"
+                            >
+                            <StackLayout  
+                                Padding="5" 
+                                Spacing="0"
+                                >                               
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="Jogo: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_NOME}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="Login: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_LOGIN}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="E-mail: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_EMAILCADASTRADO}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="Personagem: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_PERSONAGEMPRINCIPAL}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="Build: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_BUILD}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="Level: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_NIVEL}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>                              
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="Start">
+                                    <Label Text="Build URL: " FontSize="Small" FontAttributes="Bold" />
+                                    <Label Text="{Binding JOG_URLBUILD}" FontSize="Small" FontAttributes="None" />
+                                </FlexLayout>
+                            </StackLayout>
+                        </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>   
+       </yummy:PancakeView>           
+</ContentPage>
